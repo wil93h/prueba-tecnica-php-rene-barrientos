@@ -1,7 +1,8 @@
 services:
   app:
-    build: .
-    dockerfile: ./docker/Dockerfile
+    build:
+      context: . 
+      dockerfile: ./docker/Dockerfile
     container_name: php_app
     ports:
       - "8000:80"

@@ -1,20 +1,30 @@
-# Usa la imagen oficial de PHP con Apache
 FROM php:8.1-apache
 
-# Configurar el entorno de trabajo
-WORKDIR /var/www/html
+RUN apt-get update && apt-get install -y \
+    unzip \
+    git \
+    curl \
+    libonig-dev \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql mysqli
 
-# Copiar los archivos del proyecto al contenedor
-COPY . .
-
-# Instalar extensiones necesarias de PHP
-RUN docker-php-ext-install pdo pdo_mysql
-
-# Habilitar mod_rewrite para Apache
 RUN a2enmod rewrite
 
-# Exponer el puerto 80
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
+
+COPY . /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+RUN service apache2 restart
+
+WORKDIR /var/www/html
+
+RUN composer install --no-dev --optimize-autoloader
+
 EXPOSE 80
 
-# Comando para ejecutar Apache en el contenedor
 CMD ["apache2-foreground"]
