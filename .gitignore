@@ -18,8 +18,6 @@ Thumbs.db
 # Archivos de logs
 *.log
 
-# Ignorar el directorio de tests si no se deben versionar los datos de pruebas
-/tests/
 
 # Ignorar la carpeta de dependencias de Node (si las utilizas en algún momento)
 node_modules/
