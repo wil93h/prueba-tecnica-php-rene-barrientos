@@ -37,7 +37,7 @@ class UserRepository implements UserRepositoryInterface
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data ? new User($data['id'], $data['name'], $data['email'], $data['password']) : null;
+        return $data ? new User( $data['name'], $data['email'], $data['password'],$data['id']) : null;
     }
 
     public function update(int $id, User $user): void

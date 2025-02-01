@@ -13,7 +13,7 @@ class DB
     {
         if (self::$connection === null) {
             try {
-                self::$connection = new PDO("mysql:host=db;dbname=db_users", "php", "toor");
+                self::$connection = new PDO("mysql:host=db;dbname=db_users", "user", "toor");
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
                 die("Database connection error: " . $e->getMessage());
