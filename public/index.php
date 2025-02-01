@@ -1,9 +1,11 @@
 <?php
-phpinfo();
-// require_once __DIR__ . '/../vendor/autoload.php';
+// phpinfo();
 
-// if ($_SERVER['REQUEST_URI'] === '/users') {
-//     echo "Página de usuarios";
-// } else {
-//     echo "Bienvenido a la aplicación de gestión de usuarios.";
-// }
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\Controller\UserController;
+
+header("Content-Type: application/json");
+
+$controller = new UserController();
+$controller->createUser($_POST);

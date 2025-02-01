@@ -1,0 +1,62 @@
+# Ignorar los archivos generados por Composer
+/vendor/
+/composer.lock
+
+# Ignorar el directorio de caché de Composer
+/.composer/
+
+# Ignorar los archivos de configuración de IDEs y editores
+/.idea/
+/.vscode/
+/*.sublime-workspace
+/*.sublime-project
+
+# Archivos de sistema (Mac, Windows, Linux)
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Ignorar el directorio de tests si no se deben versionar los datos de pruebas
+/tests/
+
+# Ignorar la carpeta de dependencias de Node (si las utilizas en algún momento)
+node_modules/
+
+# Ignorar archivos y carpetas temporales
+*.swp
+*.swo
+*.bak
+
+# Ignorar configuraciones específicas de Docker (si no se necesita versionar)
+.docker/
+
+# Ignorar la configuración de Apache (si no es necesario versionarlo)
+docker/apache.conf
+
+# Ignorar el archivo de entorno de desarrollo local
+.env
+
+# Ignorar los archivos de bases de datos SQLite (si es necesario)
+*.sqlite
+*.db
+
+# Ignorar el directorio de cache de PHP (si se usa en desarrollo)
+var/cache/
+
+# Archivos temporales generados en el contenedor
+docker-compose.override.yml
+
+# Ignorar las imágenes de Docker (si no se quieren versionar)
+*.tar
+*.tar.gz
+*.tgz
+*.docker
+
+# Ignorar el directorio de vendor de PHPUnit si solo es utilizado para tests
+/vendor/bin/
+
+# Ignorar archivos generados de PHPUNIT si se genera un reporte
+*.html
+*.log

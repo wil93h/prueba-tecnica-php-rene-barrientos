@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
-use App\Models\User;
+use App\Entity\User;
 
-interface UserRepositoryInterface {
+interface UserRepositoryInterface
+{
     public function save(User $user): void;
     public function findAll(): array;
     public function findById(int $id): ?User;
