@@ -11,6 +11,17 @@ class User
 
     public function __construct(string $name, string $email, string $password, ?int $id = null)
     {
+        if (empty(trim($name))) {
+            throw new \InvalidArgumentException("Name cannot be empty.");
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new \InvalidArgumentException("Invalid email format.");
+        }
+
+        if (strlen($password) < 6) {
+            throw new \InvalidArgumentException("Password must be at least 6 characters.");
+        }
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;

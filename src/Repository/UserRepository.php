@@ -15,7 +15,7 @@ class UserRepository implements UserRepositoryInterface
         $this->pdo = DB::getConnection();
     }
 
-    public function save(User $user): void
+    public function save(User $user): int
     {
         $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
         $stmt = $this->pdo->prepare($sql);
@@ -24,6 +24,7 @@ class UserRepository implements UserRepositoryInterface
             'email' => $user->getEmail(),
             'password' => $user->getPassword()
         ]);
+        return (int) $this->pdo->lastInsertId();
     }
 
     public function findAll(): array
@@ -37,7 +38,8 @@ class UserRepository implements UserRepositoryInterface
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data ? new User( $data['name'], $data['email'], $data['password'],$data['id']) : null;
+        
+        return $data ? new User($data['name'], $data['email'], $data['password'], $data['id']) : null;
     }
 
     public function update(int $id, User $user): void
